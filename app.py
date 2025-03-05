@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 
 # ========================= 🔥 KONFIGURASI HALAMAN UTAMA ========================= #
 st.set_page_config(page_title="Kuesioner Analitik", layout="wide")
@@ -11,9 +12,15 @@ st.markdown("---")
 
 # ========================= 🔥 NAVIGASI VIA SIDEBAR ========================= #
 st.sidebar.title("🔍 Navigasi Aplikasi")
-st.sidebar.page_link("app.py", label="🏠 Home", icon="🏠")
-st.sidebar.page_link("pages/form.py", label="📝 Isi Form", icon="📝")
-st.sidebar.page_link("pages/dashboard.py", label="📊 Dashboard", icon="📊")
+
+if st.sidebar.button("🏠 Home"):
+    st.experimental_rerun()
+
+if st.sidebar.button("📝 Isi Form"):
+    os.system("streamlit run pages/form.py")
+
+if st.sidebar.button("📊 Dashboard"):
+    os.system("streamlit run pages/dashboard.py")
 
 st.sidebar.markdown("---")
 st.sidebar.success("📍 Pilih halaman di sidebar untuk mulai eksplorasi!")
@@ -25,11 +32,11 @@ col1, col2 = st.columns(2)
 
 with col1:
     if st.button("📝 Isi Form Kuesioner"):
-        st.switch_page("pages/form.py")
+        os.system("streamlit run pages/form.py")
 
 with col2:
     if st.button("📊 Lihat Dashboard Analitik"):
-        st.switch_page("pages/dashboard.py")
+        os.system("streamlit run pages/dashboard.py")
 
 st.markdown("---")
 
