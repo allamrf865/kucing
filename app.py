@@ -1,5 +1,4 @@
 import streamlit as st
-import os
 
 # ========================= 🔥 KONFIGURASI HALAMAN UTAMA ========================= #
 st.set_page_config(page_title="Kuesioner Analitik", layout="wide")
@@ -10,33 +9,27 @@ st.markdown("<h3 style='text-align: center; color: #33FFBD;'>Silakan navigasi ke
 
 st.markdown("---")
 
-# ========================= 🔥 NAVIGASI VIA SIDEBAR ========================= #
+# ========================= 🔥 NAVIGASI VIA SIDEBAR (FIXED) ========================= #
 st.sidebar.title("🔍 Navigasi Aplikasi")
-
-if st.sidebar.button("🏠 Home"):
-    st.experimental_rerun()
-
-if st.sidebar.button("📝 Isi Form"):
-    os.system("streamlit run pages/form.py")
-
-if st.sidebar.button("📊 Dashboard"):
-    os.system("streamlit run pages/dashboard.py")
+st.sidebar.page_link("app.py", label="🏠 Home", icon="🏠")
+st.sidebar.page_link("pages/form.py", label="📝 Isi Form", icon="📝")
+st.sidebar.page_link("pages/dashboard.py", label="📊 Dashboard", icon="📊")
 
 st.sidebar.markdown("---")
 st.sidebar.success("📍 Pilih halaman di sidebar untuk mulai eksplorasi!")
 
-# ========================= 🔥 NAVIGASI KE HALAMAN LAIN (DENGAN TOMBOL) ========================= #
+# ========================= 🔥 NAVIGASI KE HALAMAN LAIN (BUTTON) ========================= #
 st.subheader("🔍 Ayo Mulai Analisis!")
 
 col1, col2 = st.columns(2)
 
 with col1:
     if st.button("📝 Isi Form Kuesioner"):
-        os.system("streamlit run pages/form.py")
+        st.switch_page("pages/form")
 
 with col2:
     if st.button("📊 Lihat Dashboard Analitik"):
-        os.system("streamlit run pages/dashboard.py")
+        st.switch_page("pages/dashboard")
 
 st.markdown("---")
 
